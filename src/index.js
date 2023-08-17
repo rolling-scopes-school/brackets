@@ -1,25 +1,25 @@
 module.exports = function check(str, bracketsConfig) {
   const stack = [];
-  const openingBrackets = new Set(bracketsConfig.map(pair => pair[0]));
-  const closingBrackets = new Set(bracketsConfig.map(pair => pair[1]));
-  const bracketPairs = Object.fromEntries(bracketsConfig);
+  const openingSymbols = new Set(bracketsConfig.map(pair => pair[0]));
+  const closingSymbols = new Set(bracketsConfig.map(pair => pair[1]));
+  const symbolPairs = Object.fromEntries(bracketsConfig);
 
-  for (let bracket of str) {
-    if (openingBrackets.has(bracket)) {
-      // Handle opening brackets
-      if (bracketPairs[bracket] !== bracket) {
-        // Handle cases where opening and closing brackets are the same
-        stack.push(bracket);
+  for (let symbol of str) {
+    if (openingSymbols.has(symbol)) {
+      // Handle opening symbols
+      if (symbolPairs[symbol] !== symbol) {
+        // Handle cases where opening and closing symbols are the same
+        stack.push(symbol);
       } else {
-        if (stack.length === 0 || stack[stack.length - 1] !== bracket) {
-          stack.push(bracket);
+        if (stack.length === 0 || stack[stack.length - 1] !== symbol) {
+          stack.push(symbol);
         } else {
           stack.pop();
         }
       }
-    } else if (closingBrackets.has(bracket)) {
-      // Handle closing brackets
-      if (stack.length === 0 || bracketPairs[stack[stack.length - 1]] !== bracket) {
+    } else if (closingSymbols.has(symbol)) {
+      // Handle closing symbols
+      if (stack.length === 0 || symbolPairs[stack[stack.length - 1]] !== symbol) {
         return false;
       }
       stack.pop();
@@ -30,12 +30,12 @@ module.exports = function check(str, bracketsConfig) {
 };
 
 console.log(check('()', [['(', ')']])); // true
-console.log(check('((()))()', [['(', ')']])); // true
-console.log(check('())(', [['(', ')']])); // false
-console.log(check('([{}])', [['(', ')'], ['[', ']'], ['{', '}']])); // true
-console.log(check('[(])', [['(', ')'], ['[', ']']])); // false
-console.log(check('[]()', [['(', ')'], ['[', ']']])); // true
-console.log(check('[]()(', [['(', ')'], ['[', ']']])); // false
+console.log(check('[[[]]][]', [['[', ']']])); // true
+console.log(check('][', [['[', ']']])); // false
+console.log(check('{}{}', [['{', '}']])); // true
+console.log(check('{{{}}}', [['{', '}']])); // true
+console.log(check('}{', [['{', '}']])); // false
+console.log(check('{{}}{}', [['{', '}'], ['{', '}']])); // true
 console.log(check('||', [['|', '|']])); // true
 console.log(check('|()|', [['(', ')'], ['|', '|']])); // true
 console.log(check('|(|)', [['(', ')'], ['|', '|']])); // false
