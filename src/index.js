@@ -9,24 +9,19 @@ module.exports = function check(str, bracketsConfig) {
   
   string = string.replaceAll(",", "");
   
-//   string = Array.of(string);
-  
-//   string.sort();  
-  
-//   str = Array.of(str);
-  console.log(str);  
-  console.log(string);  
+  // console.log(str);  
+  // console.log(string);  
   
   for (i = 0; i < string.length - 1; i+=2) {
       
       for (let j = 0; j < str.length; j++) {
           if (str[j] == string[i]) bracket1++;
       }
-      console.log(bracket1);
+      // console.log(bracket1);
       for (let j = 0; j < str.length; j++) {
           if (str[j] == string[i+1]) bracket1--;
       }
-      console.log(bracket1);  
+      // console.log(bracket1);  
   }
   
   if (bracket1 == 0) return true;
