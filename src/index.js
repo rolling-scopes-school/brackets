@@ -1,4 +1,4 @@
-module.exports = function check(str, bracketsConfig) {
+function check(str, bracketsConfig) {
   let result = null;
   let string = '';
   let bracket1 = 0;
@@ -9,22 +9,27 @@ module.exports = function check(str, bracketsConfig) {
   
   string = string.replaceAll(",", "");
   
-  // console.log(str);  
-  // console.log(string);  
+//   string = Array.of(string);
+  
+//   string.sort();  
+  
+//   str = Array.of(str);
+  console.log(str);  
+  console.log(string);  
   
   for (i = 0; i < string.length - 1; i+=2) {
       
       for (let j = 0; j < str.length; j++) {
           if (str[j] == string[i]) bracket1++;
       }
-      // console.log(bracket1);
+      console.log(bracket1);
       for (let j = 0; j < str.length; j++) {
           if (str[j] == string[i+1]) bracket1--;
       }
-      // console.log(bracket1);  
+      console.log(bracket1);  
   }
   
-  if (bracket1 == 0) return true;
+  if ((bracket1 == 0) && (str[(str.length / 2 - 1)] == str[(str.length / 2)])) return true;
   else return false;
   
 }
