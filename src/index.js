@@ -1,4 +1,4 @@
-function check(str, bracketsConfig) {
+module.exports = function check(str, bracketsConfig) {
   let result = null;
   let string = '';
   let bracket1 = 0;
@@ -29,7 +29,12 @@ function check(str, bracketsConfig) {
       console.log(bracket1);  
   }
   
-  if ((bracket1 == 0) && (str[(str.length / 2 - 1)] == str[(str.length / 2)])) return true;
+  console.log(str[(str.length / 2 - 1)]);
+  console.log(str[(str.length / 2)]);
+
+  console.log((str[(str.length / 2 - 1)] == str[(str.length / 2)]));
+  
+  if (bracket1 == 0) return true;
   else return false;
   
 }
