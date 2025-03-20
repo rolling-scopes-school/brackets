@@ -2,25 +2,25 @@
   "name": "brackets",
   "version": "1.0.0",
   "description": "Brackets",
-  "main": "test.js",
-  "engines": {
-    "node": "16",
-    "npm": "8"
-  },
+  "main": "index.js",
   "scripts": {
-    "test": "mocha test.js"
+    "test": "npm run lint && mocha",
+    "lint": "node node_modules/eslint/bin/eslint.js ./src",
+    "lint:fix": "node node_modules/eslint/bin/eslint.js ./src --fix"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/yankouskia/additional_5.git"
+    "url": "git+https://github.com/rolling-scopes-school/brackets.git"
   },
-  "author": "yankouskia",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/yankouskia/additional_5/issues"
-  },
+  "author": "max@shas.tel",
+  "license": "MIT",
+  "homepage": "https://github.com/rolling-scopes-school/brackets",
   "devDependencies": {
-    "mocha": "^10.1.0"
-  },
-  "homepage": "https://github.com/yankouskia/additional_5#readme"
+    "eslint": "^8.57.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^10.1.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "mocha": "^10.8.2",
+    "prettier": "^3.5.3"
+  }
 }
